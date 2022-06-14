@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qingfeng.dao.MemberReadStateDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.qingfeng.bean.MemberReadStateEntity" id="memberReadStateMap">
+        <result property="rsId" column="rs_id"/>
+        <result property="bookId" column="book_id"/>
+        <result property="memberId" column="member_id"/>
+        <result property="readState" column="read_state"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+
+    <select id="queryMemberReadState" resultMap="memberReadStateMap">
+        select *
+        from member_read_state
+        where member_id = #{memberId}
+          and book_id = #{bookId}
+    </select>
+
+    <insert id="addMemberReadState" useGeneratedKeys="true" keyProperty="rsId">
+        insert into member_read_state(
+            book_id,
+            member_id,
+            read_state,
+            create_time
+        ) values (
+            #{bookId},
+            #{memberId},
+            #{readState},
+            #{createTime}
+        )
+    </insert>
+</mapper>

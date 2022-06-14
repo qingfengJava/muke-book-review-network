@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.qingfeng.dao.BookDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="com.qingfeng.bean.BookEntity" id="bookMap">
+        <result property="bookId" column="book_id"/>
+        <result property="bookName" column="book_name"/>
+        <result property="subTitle" column="sub_title"/>
+        <result property="author" column="author"/>
+        <result property="cover" column="cover"/>
+        <result property="description" column="description"/>
+        <result property="categoryId" column="category_id"/>
+        <result property="evaluationScore" column="evaluation_score"/>
+        <result property="evaluationQuantity" column="evaluation_quantity"/>
+    </resultMap>
+
+    <select id="queryList" resultMap="bookMap">
+        select *
+        from book
+        order by evaluation_quantity desc
+    </select>
+
+    <select id="queryListByCondition" resultMap="bookMap">
+        select b.*
+        from book b
+                 LEFT JOIN category c ON b.category_id = c.category_id
+        where 1 = 1
+        <if test="categoryId != -1">
+            and b.category_id = #{categoryId}
+        </if>
+        <if test="styleId == 1">
+            order by b.evaluation_quantity desc
+        </if>
+        <if test="styleId == 2">
+            order by b.evaluation_score desc
+        </if>
+    </select>
+
+    <select id="queryDetail" resultMap="bookMap">
+        select *
+        from book
+        where book_id = #{id}
+    </select>
+
+</mapper>
