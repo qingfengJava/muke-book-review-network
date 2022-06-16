@@ -18,10 +18,4 @@ public interface UserDao {
      */
     UserEntity selectUserByUsername(String username);
 
-    /**
-     * 注册用户信息
-     * @param user
-     * @return
-     */
-    int insertUser(UserEntity user);
 }

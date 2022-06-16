@@ -35,4 +35,33 @@ public interface BookDao{
      * @return
      */
     BookEntity queryDetail(Integer id);
+
+    /**
+     * 分页查询图书列表
+     * @param start
+     * @param limit
+     * @return
+     */
+    List<BookEntity> queryBookList(@Param("start") int start,
+                                   @Param("limit") Integer limit);
+
+    /**
+     * 查询图书总数
+     * @return
+     */
+    int queryBookTotal();
+
+    /**
+     * 删除图书信息
+     * @param id
+     * @return
+     */
+    int delete(Integer id);
+
+    /**
+     * 添加图书信息
+     * @param bookEntity
+     * @return
+     */
+    int addBook(BookEntity bookEntity);
 }

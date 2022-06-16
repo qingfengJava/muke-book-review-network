@@ -44,4 +44,45 @@
     <update id="updateStar">
         update evaluation set enjoy = #{star} where evaluation_id = #{evaluationId}
     </update>
+
+    <select id="findAllEvaluation" resultMap="evaluationMapVo">
+        select * from evaluation
+        where 1=1
+        <if test="bookId != null and bookId != 0">
+            and book_id = #{bookId}
+        </if>
+        limit #{start}, #{limit}
+    </select>
+
+    <select id="findAllEvaluationCount" resultType="java.lang.Integer">
+        select count(*) from evaluation
+        where 1=1
+        <if test="bookId != null and bookId != 0">
+            and book_id = #{bookId}
+        </if>
+    </select>
+
+    <update id="updateEvaluation">
+        update evaluation set
+        state = #{state},
+        disable_reason = #{disableReason},
+        disable_time = #{disableTime}
+        where evaluation_id = #{evaluationId}
+    </update>
+
+    <update id="enableEvaluation">
+        update evaluation set
+        state = 'enable'
+        where evaluation_id = #{evaluationId}
+    </update>
+
+    <select id="findEvaluationById" resultMap="evaluationMap">
+        select * from evaluation where evaluation_id = #{evaluationId}
+    </select>
+
+    <update id="updateShortComment">
+        update evaluation set
+        content = #{content}
+        where evaluation_id = #{evaluationId}
+    </update>
 </mapper>

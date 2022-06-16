@@ -10,12 +10,6 @@ import com.qingfeng.common.ResultVO;
  */
 public interface UserService{
 
-    /**
-     * 用户注册
-     * @param user
-     * @return
-     */
-    ResultVO userReg(UserEntity user);
 
     /**
      * 用户登录

@@ -20,10 +20,6 @@
         <property name="prefix" value="/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
-    <!-- 设置静态资源不过滤 -->
-    <!--<mvc:resources location="/pages/" mapping="/pages/**"/>
-    <mvc:resources location="/static/" mapping="/static/**"/>
-    <mvc:resources location="/index/" mapping="/index/**"/>-->
 
     <!-- 开启SpringMVC注解的支持 -->
     <mvc:annotation-driven/>

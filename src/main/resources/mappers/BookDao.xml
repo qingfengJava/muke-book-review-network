@@ -44,4 +44,24 @@
         where book_id = #{id}
     </select>
 
+    <select id="queryBookList" resultMap="bookMap">
+        select *
+        from book
+        limit #{start}, #{limit}
+    </select>
+
+    <select id="queryBookTotal" resultType="java.lang.Integer">
+        select count(*)
+        from book
+    </select>
+
+    <delete id="delete">
+        delete from book
+        where book_id = #{id}
+    </delete>
+
+    <insert id="addBook">
+        insert into book(book_name, sub_title, author, cover, description, category_id, evaluation_score, evaluation_quantity)
+        values(#{bookName}, #{subTitle}, #{author}, #{cover}, #{description}, #{categoryId}, #{evaluationScore}, #{evaluationQuantity})
+    </insert>
 </mapper>

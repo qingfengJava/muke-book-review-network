@@ -15,8 +15,4 @@
         select * from `user` where username = #{username}
     </select>
 
-    <insert id="insertUser" useGeneratedKeys="true" keyProperty="userId">
-        insert into `user`(username, password, salt) values(#{username}, #{password}, #{salt})
-    </insert>
-
 </mapper>
